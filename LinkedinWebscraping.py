@@ -4,7 +4,7 @@ import re
 
 from bs4 import BeautifulSoup
 from datetime import date, timedelta, datetime
-from IPython.core.display import clear_output
+
 from random import randint
 from requests import get
 from selenium import webdriver
@@ -76,17 +76,33 @@ for job in jobs:
     job_link0 = job.find_element_by_css_selector("a").get_attribute("href")
     job_link.append(job_link0)
 
-
 seniority_level = []
+employment_type = []
 job_function = []
+industries = []
 for link in job_link:
     url = link
     driver.get(url)
     sleep(5)
 
-    seniority_level0 = driver.find_elements_by_css_selector("span.description__job-criteria-text.description__job-criteria-text--criteria")
-    for element in seniority_level0:
-        try:
-            print(element.get_attribute("innerText"))
-        except:
-            print("Nope")
+    seniority_level0 = driver.find_element_by_xpath(
+        "html/body/main/section/div/div/section/div/ul/li[1]/span").get_attribute("innerText")
+    seniority_level.append(seniority_level0)
+
+    employment = driver.find_element_by_xpath("html/body/main/section/div/div/section/div/ul/li[2]/span").get_attribute(
+        "innerText")
+    employment_type.append(employment)
+
+    function = driver.find_element_by_xpath("html/body/main/section/div/div/section/div/ul/li[3]/span").get_attribute(
+        "innerText")
+    job_function.append(function)
+
+    industry = driver.find_element_by_xpath("html/body/main/section/div/div/section/div/ul/li[4]/span").get_attribute(
+        "innerText")
+    industries.append(industry)
+
+print(seniority_level)
+print(employment_type)
+print(job_function)
+print(industries)
+
