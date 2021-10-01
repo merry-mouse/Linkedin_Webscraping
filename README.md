@@ -12,7 +12,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install them.
 
 ```bash
 pip install pandas
-``
+```
 ## Usage
 
 there are 3 modules that has to be imported:
