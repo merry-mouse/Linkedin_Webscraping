@@ -5,9 +5,11 @@ This code allows to scrape some basic information about job offers on Linkedin.
 Resulting info first stored in separated lists and then in a dictionary and then to a csv file.
 # Libraries
 You need 3 libraries to be installed for this script to work:
+
 - pandas
 - selenium
 - time
+
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install them.
 
 ```bash
