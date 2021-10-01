@@ -1,19 +1,9 @@
 # importing packages
 import pandas as pd
-import re
-
-from bs4 import BeautifulSoup
-from datetime import date, timedelta, datetime
-
-from random import randint
-from requests import get
 from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from time import time
 start_time = time()
-
-from warnings import warn
 
 # choose jobs, industries and area you are interested in on Linkedin, paste url that you got
 url = "https://www.linkedin.com/jobs/search/?f_EA=true&f_I=96%2C4%2C6&f_PP=100495523&f_TPR=r604800&geoId=101165590&keywords=developer%20OR%20engineer%20OR%20architect%20OR%20devops%20OR%20sales%20OR%20support&location=United%20Kingdom&sortBy=R"
@@ -107,18 +97,13 @@ for link in job_link:
         "innerText")
     industries.append(industry)
 
-#checking if all worked fine
-print(seniority_level)
-print(len(seniority_level))
-print("-" * 15)
+# writing all the scraped info to a csv file and making a  dictionary of lists
+dict = {'Job title': job_title, 'Company name': company_name, 'Location': location, "Date posted": date_posted, "Job link":
+        job_link, "Job row": job_row, "Seniority level": seniority_level, "Employment type": employment_type,
+        "Job function": job_function, "Industries": industries}
 
-print(employment_type)
-print(len(employment_type))
-print("-" * 15)
+df = pd.DataFrame(dict)
 
-print(job_function)
-print(len(job_function))
-print("-" * 15)
+# saving the dataframe to a csv file
+df.to_csv("LinkedinJobs.csv", index=False)
 
-print(industries)
-print(len(industries))
